@@ -6,6 +6,7 @@ module Pickaname
   class Robot
     PREFIX      = File.foreach("lib/data/prefix.txt").map { |line| line.split(' ') }
     SUFFIX       = File.foreach("lib/data/suffix.txt").map { |line| line.split(' ') }
+    FUNNY       = File.foreach("lib/data/funny.txt").map { |line| line.split(' ') }
     PREFIX_SIZE = 1
     SUFFIX_SIZE  = 1
 
@@ -17,6 +18,10 @@ module Pickaname
 
     def self.pseudo
       @name = PREFIX.sample(PREFIX_SIZE).join << SUFFIX.sample(SUFFIX_SIZE).join
+    end
+
+    def self.funny
+      @name = FUNNY.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
     end
 
     def self.random(record = Robot.new)
