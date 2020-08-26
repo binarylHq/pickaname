@@ -12,12 +12,30 @@ module Pickaname
     attr_reader :name
 
     def initialize()
-      @name = pseudo_name
+      @name = random_string
     end
 
     def self.pseudo
       @name = PREFIX.sample(PREFIX_SIZE).join << SUFFIX.sample(SUFFIX_SIZE).join
     end
 
+    def self.random(record = Robot.new)
+      @name = record.random_string
+    end
+
+    def random_string
+      down   = ('a'..'z').to_a
+      up     = ('A'..'Z').to_a
+      digits = ('0'..'9').to_a
+      [extract1(down), extract1(up), extract1(digits)].
+        concat(((down+up+digits).sample(8))).shuffle.join
+    end
+
+    def extract1(arr)
+      i = arr.size.times.to_a.sample
+      c = arr[i]
+      arr.delete_at(i)
+      c
+    end
   end
 end
