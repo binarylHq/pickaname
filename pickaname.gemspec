@@ -6,9 +6,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Karan"]
   spec.email         = ["kirubakarann7@gmail.com"]
 
-  spec.summary       = "Username generator"
-  spec.description   = "Username generator"
-  spec.homepage      = "https://github.com/binarylHq"
+  spec.summary       = "Pickaname gem"
+  spec.description   = "Randomly generates a name"
+  spec.homepage      = "https://github.com/binarylHq/pickaname"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
