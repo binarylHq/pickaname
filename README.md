@@ -45,13 +45,13 @@ To generate random letters:
 Pickaname::Robot.random_letters
 ```
 
-Pass `length` argument to generate a name with specific length:
+Pass `length` as an optional argument to generate a name with specific length:
 
 ```ruby
 Pickaname::Robot.common(length: 8)
 Pickaname::Robot.funny(length: 8)
 Pickaname::Robot.dark(length: 8)
-Pickaname::Robot.common(length: 8)
+Pickaname::Robot.random_letters(length: 8)
 ```
 
 ## Development
