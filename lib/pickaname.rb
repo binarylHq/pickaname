@@ -1,4 +1,5 @@
 require "pickaname/version"
+require 'timeout'
 
 module Pickaname
   class Error < StandardError; end
@@ -13,45 +14,81 @@ module Pickaname
     PREFIX_SIZE = 1
     SUFFIX_SIZE  = 1
 
+    TIMEOUT_IN_SECONDS = 5
+
     attr_reader :name
 
     def initialize()
-      @name = random_string
+      @name = random_str
     end
 
     # def self.pseudo
     #   @name = PREFIX.sample(PREFIX_SIZE).join << SUFFIX.sample(SUFFIX_SIZE).join
     # end
 
-    def self.common
-      @name = COMMON.sample(PREFIX_SIZE).join << COMMON.sample(SUFFIX_SIZE).join
+    def self.common(length: nil)
+      begin
+        Timeout::timeout(TIMEOUT_IN_SECONDS) do
+          @name = COMMON.sample(PREFIX_SIZE).join << COMMON.sample(SUFFIX_SIZE).join
+          while length
+            break if @name.length == length
+            @name = COMMON.sample(PREFIX_SIZE).join << COMMON.sample(SUFFIX_SIZE).join
+          end
+          return @name
+        end
+      rescue Timeout::Error
+        puts "Timeout: No results found"
+      end
     end
 
-    def self.funny
-      @name = COMMON.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
+    def self.funny(length: nil)
+      begin
+        Timeout::timeout(TIMEOUT_IN_SECONDS) do
+          @name = COMMON.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
+          while length
+            break if @name.length == length
+            @name = COMMON.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
+          end
+          return @name
+        end
+      rescue Timeout::Error
+        puts "Timeout: No results found"
+      end
     end
 
-    def self.dark
-      @name = COMMON.sample(PREFIX_SIZE).join << DARK.sample(SUFFIX_SIZE).join
+    def self.dark(length: nil)
+      begin
+        Timeout::timeout(TIMEOUT_IN_SECONDS) do
+          @name = COMMON.sample(PREFIX_SIZE).join << DARK.sample(SUFFIX_SIZE).join
+          while length
+            break if @name.length == length
+            @name = COMMON.sample(PREFIX_SIZE).join << DARK.sample(SUFFIX_SIZE).join
+          end
+          return @name
+        end
+      rescue Timeout::Error
+        puts "Timeout: No results found"
+      end
     end
 
-    def self.random_letters(record = Robot.new)
-      @name = record.random_string
+    def self.random_letters(length: 8)
+      record = Robot.new
+      begin
+        Timeout::timeout(TIMEOUT_IN_SECONDS) do
+          @name = record.random_str(length)
+          while length
+            break if @name.length == length
+            @name = record.random_str(length)
+          end
+          return @name
+        end
+      rescue Timeout::Error
+        puts "Timeout: No results found"
+      end
     end
 
-    def random_string
-      down   = ('a'..'z').to_a
-      up     = ('A'..'Z').to_a
-      digits = ('0'..'9').to_a
-      [extract1(down), extract1(up), extract1(digits)].
-        concat(((down+up+digits).sample(8))).shuffle.join
-    end
-
-    def extract1(arr)
-      i = arr.size.times.to_a.sample
-      c = arr[i]
-      arr.delete_at(i)
-      c
+    def random_str(length = 8)
+      return Array.new(length){[*"a".."z", *"0".."9"].sample}.join
     end
   end
 end
