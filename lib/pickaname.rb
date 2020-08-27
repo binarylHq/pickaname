@@ -4,11 +4,11 @@ module Pickaname
   class Error < StandardError; end
 
   class Robot
-    PREFIX      = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'prefix.txt')).map { |line| line.split(' ') }
-    SUFFIX       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'suffix.txt')).map { |line| line.split(' ') }
-    FUNNY       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'funny.txt')).map { |line| line.split(' ') }
-    COMMON       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'common.txt')).map { |line| line.split(' ') }
-    DARK       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'dark.txt')).map { |line| line.split(' ') }
+    PREFIX      = File.foreach(File.join(File.dirname(__FILE__), 'data', 'prefix.txt')).map { |line| line.split(' ') }
+    SUFFIX       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'suffix.txt')).map { |line| line.split(' ') }
+    FUNNY       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'funny.txt')).map { |line| line.split(' ') }
+    COMMON       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'common.txt')).map { |line| line.split(' ') }
+    DARK       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'dark.txt')).map { |line| line.split(' ') }
 
     PREFIX_SIZE = 1
     SUFFIX_SIZE  = 1
