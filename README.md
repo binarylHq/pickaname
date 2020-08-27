@@ -20,17 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-To generate a pseudo name:
+To generate a vocabulary name:
 
-`Pickaname::Robot.pseudo`
+`Pickaname::Robot.common`
 
 To generate a funny name:
 
 `Pickaname::Robot.funny`
 
+To generate a dark name:
+
+`Pickaname::Robot.dark`
+
 To generate a random name:
 
-`Pickaname::Robot.random`
+`Pickaname::Robot.random_letters`
 
 ## Development
 

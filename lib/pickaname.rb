@@ -7,6 +7,9 @@ module Pickaname
     PREFIX      = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'prefix.txt')).map { |line| line.split(' ') }
     SUFFIX       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'suffix.txt')).map { |line| line.split(' ') }
     FUNNY       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'funny.txt')).map { |line| line.split(' ') }
+    COMMON       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'common.txt')).map { |line| line.split(' ') }
+    DARK       = File.foreach(File.join(File.dirname(__FILE__), '.', 'data', 'dark.txt')).map { |line| line.split(' ') }
+
     PREFIX_SIZE = 1
     SUFFIX_SIZE  = 1
 
@@ -16,15 +19,23 @@ module Pickaname
       @name = random_string
     end
 
-    def self.pseudo
-      @name = PREFIX.sample(PREFIX_SIZE).join << SUFFIX.sample(SUFFIX_SIZE).join
+    # def self.pseudo
+    #   @name = PREFIX.sample(PREFIX_SIZE).join << SUFFIX.sample(SUFFIX_SIZE).join
+    # end
+
+    def self.common
+      @name = COMMON.sample(PREFIX_SIZE).join << COMMON.sample(SUFFIX_SIZE).join
     end
 
     def self.funny
-      @name = FUNNY.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
+      @name = COMMON.sample(PREFIX_SIZE).join << FUNNY.sample(SUFFIX_SIZE).join
     end
 
-    def self.random(record = Robot.new)
+    def self.dark
+      @name = COMMON.sample(PREFIX_SIZE).join << DARK.sample(SUFFIX_SIZE).join
+    end
+
+    def self.random_letters(record = Robot.new)
       @name = record.random_string
     end
 
