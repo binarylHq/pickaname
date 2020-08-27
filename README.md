@@ -1,3 +1,4 @@
+
 # Pickaname
 
 Generates random username
@@ -22,19 +23,27 @@ Or install it yourself as:
 
 To generate a vocabulary name:
 
-`Pickaname::Robot.common`
+```ruby 
+Pickaname::Robot.common
+```
 
 To generate a funny name:
 
-`Pickaname::Robot.funny`
+```ruby 
+Pickaname::Robot.funny
+```
 
 To generate a dark name:
 
-`Pickaname::Robot.dark`
+```ruby 
+Pickaname::Robot.dark
+```
 
-To generate a random name:
+To generate random letters:
 
-`Pickaname::Robot.random_letters`
+```ruby 
+Pickaname::Robot.random_letters
+```
 
 Pass `length` argument to generate a name with specific length:
 
