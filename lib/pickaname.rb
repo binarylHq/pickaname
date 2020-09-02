@@ -11,6 +11,10 @@ module Pickaname
     COMMON       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'common.txt')).map { |line| line.split(' ') }
     DARK       = File.foreach(File.join(File.dirname(__FILE__), 'data', 'dark.txt')).map { |line| line.split(' ') }
 
+    FIRSTNAME = File.foreach(File.join(File.dirname(__FILE__), 'data', 'firstname.txt')).map { |line| line.split(' ') }
+    LASTNAME = File.foreach(File.join(File.dirname(__FILE__), 'data', 'lastname.txt')).map { |line| line.split(' ') }
+
+
     PREFIX_SIZE = 1
     SUFFIX_SIZE  = 1
 
@@ -37,7 +41,7 @@ module Pickaname
           return @name
         end
       rescue Timeout::Error
-        puts "Timeout: No results found"
+        random_letters(length: length)
       end
     end
 
@@ -52,7 +56,7 @@ module Pickaname
           return @name
         end
       rescue Timeout::Error
-        puts "Timeout: No results found"
+        random_letters(length: length)
       end
     end
 
@@ -67,7 +71,22 @@ module Pickaname
           return @name
         end
       rescue Timeout::Error
-        puts "Timeout: No results found"
+        random_letters(length: length)
+      end
+    end
+
+    def self.celebrity(length: nil)
+      begin
+        Timeout::timeout(TIMEOUT_IN_SECONDS) do
+          @name = FIRSTNAME.sample(PREFIX_SIZE).join << LASTNAME.sample(SUFFIX_SIZE).join
+          while length
+            break if @name.length == length
+            @name = FIRSTNAME.sample(PREFIX_SIZE).join << LASTNAME.sample(SUFFIX_SIZE).join
+          end
+          return @name
+        end
+      rescue Timeout::Error
+        random_letters(length: length)
       end
     end
 

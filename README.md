@@ -21,36 +21,43 @@ Or install it yourself as:
 
 ## Usage
 
-To generate a vocabulary name:
+To generate a name like celebrity:
 
-```ruby 
-Pickaname::Robot.common
+```ruby
+Pickaname::Robot.celebrity
 ```
 
-To generate a funny name:
+To generate a vocabulary name:
 
-```ruby 
-Pickaname::Robot.funny
+```ruby
+Pickaname::Robot.common
 ```
 
 To generate a dark name:
 
-```ruby 
+```ruby
 Pickaname::Robot.dark
 ```
 
-To generate random letters:
+To generate a funny name:
 
-```ruby 
+```ruby
+Pickaname::Robot.funny
+```
+
+To generate a random name:
+
+```ruby
 Pickaname::Robot.random_letters
 ```
 
 Pass `length` as an optional argument to generate a name with specific length:
 
 ```ruby
+Pickaname::Robot.celebrity(length: 8)
 Pickaname::Robot.common(length: 8)
-Pickaname::Robot.funny(length: 8)
 Pickaname::Robot.dark(length: 8)
+Pickaname::Robot.funny(length: 8)
 Pickaname::Robot.random_letters(length: 8)
 ```
 
